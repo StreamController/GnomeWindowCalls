@@ -1,0 +1,15 @@
+{
+    "plugin.name": "Gnome Window Calls",
+    "actions.move.name": "Move",
+    "actions.resize.name": "Resize",
+    "actions.move_resize.name": "Move and Resize",
+    "actions.status.name": "Status",
+    "actions.wm_class_regex_entry.title": "Window Class Regex",
+    "actions.title_regex_entry.title": "Title Regex",
+    "actions.x_position.title": "X Position",
+    "actions.y_position.title": "Y Position",
+    "actions.width.title": "Width",
+    "actions.height.title": "Height",
+    "actions.status.matching_windows": "Matching Windows:",
+    "actions.status.wm_class": "Window Class"
+}

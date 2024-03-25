@@ -1,6 +1,7 @@
 {
-    "version": "",
-    "thumbnail": "",
-    "id": "",
-    "name": ""
+    "version": "1.0.0",
+    "thumbnail": "store/Thumbnail",
+    "id": "com_core447_GnomeWindowCalls",
+    "name": "GnomeWindowCalls",
+    "description": "Resize and move windows using the 'Window Calls' Gnome extension"
 }
