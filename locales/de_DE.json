@@ -1,0 +1,15 @@
+{
+    "plugin.name": "Gnome Window Calls",
+    "actions.move.name": "Bewegen",
+    "actions.resize.name": "Skalieren",
+    "actions.move_resize.name": "Bewegen und Skalieren",
+    "actions.status.name": "Status",
+    "actions.wm_class_regex_entry.title": "Fensterklasse Regex",
+    "actions.title_regex_entry.title": "Titel Regex",
+    "actions.x_position.title": "X Position",
+    "actions.y_position.title": "Y Position",
+    "actions.width.title": "Breite",
+    "actions.height.title": "Höhe",
+    "actions.status.matching_windows": "Gefundene Fenster:",
+    "actions.status.wm_class": "Fensterklasse"
+}
