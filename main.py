@@ -195,4 +195,4 @@ class WindowManager:
         return matching_window_ids
     
     def get_is_connected(self) -> bool:
-        return None in [self.proxy, self.interface]
+        return None not in [self.proxy, self.interface]
