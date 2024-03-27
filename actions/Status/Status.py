@@ -30,6 +30,12 @@ class Status(ActionBase):
         if not gl.app.main_win.get_visible():
             gl.app.on_reopen()
 
+        ## Select own key
+        key_grid = self.deck_controller.get_own_key_grid()
+        coords = int(self.page_coords.split("x")[0]), int(self.page_coords.split("x")[1])
+        GLib.idle_add(key_grid.select_key, *coords)
+
+        ## Open config area
         GLib.idle_add(gl.app.main_win.leftArea.deck_stack.focus_controller, self.deck_controller)
         GLib.idle_add(gl.app.main_win.sidebar.action_configurator.load_for_action, self, self.get_own_action_index())
         GLib.idle_add(gl.app.main_win.sidebar.show_action_configurator)
@@ -49,7 +55,7 @@ class Status(ActionBase):
         settings = self.get_settings()
         self.wm_row.set_text(settings.get("wm_class", ".*"))
         self.title_row.set_text(settings.get("title", ".*"))
-    
+
     def on_row_changed(self, *args) -> None:
         self.update_box()
 
