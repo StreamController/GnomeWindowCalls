@@ -34,9 +34,6 @@ class Status(ActionBase):
         GLib.idle_add(gl.app.main_win.sidebar.action_configurator.load_for_action, self, self.get_own_action_index())
         GLib.idle_add(gl.app.main_win.sidebar.show_action_configurator)
     
-    def on_key_up(self) -> None:
-        print("Key up")
-
     def get_config_rows(self) -> list:
         self.wm_row = Adw.EntryRow(title=self.plugin_base.lm.get("actions.wm_class_regex_entry.title"), text=".*")
         self.title_row = Adw.EntryRow(title=self.plugin_base.lm.get("actions.title_regex_entry.title"), text=".*")
