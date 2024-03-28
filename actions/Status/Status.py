@@ -32,7 +32,7 @@ class Status(ActionBase):
 
         ## Select own key
         key_grid = self.deck_controller.get_own_key_grid()
-        coords = int(self.page_coords.split("x")[0]), int(self.page_coords.split("x")[1])
+        coords = int(self.page_coords.split("x")[1]), int(self.page_coords.split("x")[0])
         GLib.idle_add(key_grid.select_key, *coords)
 
         ## Open config area
