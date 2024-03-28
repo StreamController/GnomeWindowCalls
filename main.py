@@ -79,21 +79,32 @@ class GnomeWindowCalls(PluginBase):
 class ExtensionManager:
     def __init__(self, bus: dbus.SessionBus):
         self.bus = bus
-        self.gnome_shell_extensions = self.bus.get_object("org.gnome.Shell", "/org/gnome/Shell")
-        self.interface = dbus.Interface(self.gnome_shell_extensions, "org.gnome.Shell.Extensions")
+        self.gnome_shell_extensions: dbus.Interface = None
+        self.interface: dbus.Interface = None
+        try:
+            self.gnome_shell_extensions = self.bus.get_object("org.gnome.Shell", "/org/gnome/Shell")
+            self.interface = dbus.Interface(self.gnome_shell_extensions, "org.gnome.Shell.Extensions")
+        except dbus.exceptions.DBusException as e:
+            log.error(f"Failed to get gnome shell extensions. Error: {e}")
 
     def get_installed_extensions(self) -> list[str]:
         extensions: list[str] = []
+        if not self.get_is_connected(): return extensions
+
         for extension in self.interface.ListExtensions():
             extensions.append(extension)
         return extensions
 
     def install_extension(self, uuid: str) -> bool:
+        if not self.get_is_connected(): return False
         response = self.interface.InstallRemoteExtension(uuid)
         if response == "cancelled":
             return False
         if response == "successful":
             return True
+        
+    def get_is_connected(self) -> bool:
+        return None not in [self.gnome_shell_extensions, self.interface]
         
 class WindowManager:
     def __init__(self, bus):
