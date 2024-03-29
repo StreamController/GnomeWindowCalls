@@ -198,7 +198,7 @@ class WindowManager:
                 wm_class_match = re.search(wm_class_pattern, window.get("wm_class", ""), re.IGNORECASE)
                 title_match = re.search(title_pattern, self.get_title(window["id"]), re.IGNORECASE)
             except re.error:
-                return []
+                continue
 
             if wm_class_match and title_match:
                 matching_window_ids.append(window["id"])
