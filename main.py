@@ -119,57 +119,90 @@ class WindowManager:
 
     def get_all_windows(self) -> list[dict]:
         if not self.get_is_connected(): return []
-        return json.loads(self.interface.List())
+        try:
+            return json.loads(self.interface.List())
+        except Exception as e:
+            log.error(f"Failed to get all windows. Error: {e}")
+            return []
     
     def get_window_details(self, id: int) -> dict:
         if not self.get_is_connected(): return {}
-        return json.loads(self.interface.Details(str(id)))
+        try:
+            return json.loads(self.interface.Details(str(id)))
+        except Exception as e:
+            log.error(f"Failed to get window details. Error: {e}")
+            return {}
     
     def move_window_to(self, id: int, x: int, y: int):
         if not self.get_is_connected(): return
-        self.interface.Move(str(id), x, y)
+        try:
+            self.interface.Move(str(id), x, y)
+        except Exception as e:
+            log.error(f"Failed to move window. Error: {e}")
 
     def move_resize_window(self, id: int, x: int, y: int, width: int, height: int):
         if not self.get_is_connected(): return
-        self.interface.MoveResize(str(id), x, y, width, height)
-        return
-        self.move_window_to(id, x, y)
-        time.sleep(0.05)
-        self.resize_window_to(id, width, height)
-        time.sleep(0.05)
-        self.move_window_to(id, x, y)
+        try:
+            self.interface.MoveResize(str(id), x, y, width, height)
+        except Exception as e:
+            log.error(f"Failed to move and resize window. Error: {e}")
 
     def resize_window_to(self, id: int, width: int, height: int):
         if not self.get_is_connected(): return
-        self.interface.Resize(str(id), width, height)
+        try:
+            self.interface.Resize(str(id), width, height)
+        except Exception as e:
+            log.error(f"Failed to resize window. Error: {e}")
 
     def maximize_window(self, id: int) -> None:
         if not self.get_is_connected(): return
-        self.interface.Maximize(str(id))
+        try:
+            self.interface.Maximize(str(id))
+        except Exception as e:
+            log.error(f"Failed to maximize window. Error: {e}")
 
     def minimize_window(self, id: int) -> None:
         if not self.get_is_connected(): return
-        self.interface.Minimize(str(id))
+        try:
+            self.interface.Minimize(str(id))
+        except Exception as e:
+            log.error(f"Failed to minimize window. Error: {e}")
 
     def unmaximize_window(self, id: int) -> None:
         if not self.get_is_connected(): return
-        self.interface.Unmaximize(str(id))
+        try:
+            self.interface.Unmaximize(str(id))
+        except Exception as e:
+            log.error(f"Failed to unmaximize window. Error: {e}")
 
     def unminimize_window(self, id: int) -> None:
         if not self.get_is_connected(): return
-        self.interface.Unminimize(str(id))
+        try:
+            self.interface.Unminimize(str(id))
+        except Exception as e:
+            log.error(f"Failed to unminimize window. Error: {e}")
 
     def activate_window(self, id: int) -> None:
         if not self.get_is_connected(): return
-        self.interface.Activate(str(id))
+        try:
+            self.interface.Activate(str(id))
+        except Exception as e:
+            log.error(f"Failed to activate window. Error: {e}")
 
     def close_window(self, id: int) -> None:
         if not self.get_is_connected(): return
-        self.interface.Close(str(id))
+        try:
+            self.interface.Close(str(id))
+        except Exception as e:
+            log.error(f"Failed to close window. Error: {e}")
 
     def get_title(self, id: int) -> str:
         if not self.get_is_connected(): return ""
-        return self.interface.GetTitle(str(id))
+        try:
+            return self.interface.GetTitle(str(id))
+        except Exception as e:
+            log.error(f"Failed to get title. Error: {e}")
+            return ""
     
     def get_all_wm_classes(self) -> list[str]:
         if not self.get_is_connected(): return []
