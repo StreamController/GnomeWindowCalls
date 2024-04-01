@@ -91,10 +91,10 @@ class Status(ActionBase):
     def generate_expander_from_details(self, details: dict) -> Adw.ExpanderRow:
         expander = Adw.ExpanderRow(title=details["title"], subtitle=details["wm_class"])
 
-        expander.add_row(AttributeRow(title=self.plugin_base.lm.get("actions.status.wm_class"), attr=details["wm_class"]))
-        expander.add_row(AttributeRow(title=self.plugin_base.lm.get("actions.x_position.title"), attr=details["x"]))
-        expander.add_row(AttributeRow(title=self.plugin_base.lm.get("actions.y_position.title"), attr=details["y"]))
-        expander.add_row(AttributeRow(title=self.plugin_base.lm.get("actions.width.title"), attr=details["width"]))
-        expander.add_row(AttributeRow(title=self.plugin_base.lm.get("actions.height.title"), attr=details["height"]))
+        expander.add_row(AttributeRow(title=self.plugin_base.lm.get("actions.status.wm_class"), attr=details.get("wm_class", "N/A")))
+        expander.add_row(AttributeRow(title=self.plugin_base.lm.get("actions.x_position.title"), attr=details.get("x", "N/A")))
+        expander.add_row(AttributeRow(title=self.plugin_base.lm.get("actions.y_position.title"), attr=details.get("y", "N/A")))
+        expander.add_row(AttributeRow(title=self.plugin_base.lm.get("actions.width.title"), attr=details.get("width", "N/A")))
+        expander.add_row(AttributeRow(title=self.plugin_base.lm.get("actions.height.title"), attr=details.get("height", "N/A")))
 
         return expander
