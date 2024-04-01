@@ -61,11 +61,13 @@ class GnomeWindowCalls(PluginBase):
             plugin_version = "1.0.0",
             app_version = "1.2.0-alpha"
         )
+        self.request_dbus_permission("org.gnome.Shell.Extensions.Windows")
 
         self.bus = dbus.SessionBus()
         self.extension_manager = ExtensionManager(self.bus)
         self.handle_extension_installation()
         self.window_manager = WindowManager(self.bus)
+
 
     def handle_extension_installation(self):
         uuid = "window-calls@domandoman.xyz"
