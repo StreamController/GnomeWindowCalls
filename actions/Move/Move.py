@@ -22,6 +22,8 @@ class Move(ActionBase):
         super().__init__(action_id=action_id, action_name=action_name,
             deck_controller=deck_controller, page=page, coords=coords, plugin_base=plugin_base)
         
+        self.HAS_CONFIGURATION = True
+        
     def on_ready(self) -> None:
         icon_path = os.path.join(self.plugin_base.PATH, "assets", "move.png")
         self.set_media(media_path=icon_path, size=0.75)
