@@ -2,6 +2,8 @@
 import time
 from src.backend.PluginManager.PluginBase import PluginBase
 from src.backend.PluginManager.ActionHolder import ActionHolder
+from src.backend.DeckManagement.InputIdentifier import Input
+from src.backend.PluginManager.ActionInputSupport import ActionInputSupport
 
 # Import actions
 from .actions.Move.Move import Move
@@ -21,36 +23,42 @@ class GnomeWindowCalls(PluginBase):
 
         self.lm = self.locale_manager
 
-        ## Register actions
-        self.simple_action_holder = ActionHolder(
-            plugin_base = self,
-            action_base = Move,
-            action_id = "com_core447_GnomeWindowCalls::Move",
-            action_name = self.lm.get("actions.move.name"),
-        )
-        self.add_action_holder(self.simple_action_holder)
-
         self.status_action_holder = ActionHolder(
             plugin_base = self,
             action_base = Status,
-            action_id = "com_core447_GnomeWindowCalls::Status",
+            action_id_suffix = "Status",
             action_name = self.lm.get("actions.status.name"),
+            action_support={
+                Input.Key: ActionInputSupport.SUPPORTED,
+                Input.Dial: ActionInputSupport.SUPPORTED,
+                Input.Touchscreen: ActionInputSupport.UNTESTED
+            }
         )
         self.add_action_holder(self.status_action_holder)
 
         self.resize_action_holder = ActionHolder(
             plugin_base = self,
             action_base = Resize,
-            action_id = "com_core447_GnomeWindowCalls::Resize",
+            action_id_suffix = "Resize",
             action_name = self.lm.get("actions.resize.name"),
+            action_support={
+                Input.Key: ActionInputSupport.SUPPORTED,
+                Input.Dial: ActionInputSupport.SUPPORTED,
+                Input.Touchscreen: ActionInputSupport.UNTESTED
+            }
         )
         self.add_action_holder(self.resize_action_holder)
 
         self.move_resize_action_holder = ActionHolder(
             plugin_base = self,
             action_base = MoveResize,
-            action_id = "com_core447_GnomeWindowCalls::MoveResize",
+            action_id_suffix = "MoveResize",
             action_name = self.lm.get("actions.move_resize.name"),
+            action_support={
+                Input.Key: ActionInputSupport.SUPPORTED,
+                Input.Dial: ActionInputSupport.SUPPORTED,
+                Input.Touchscreen: ActionInputSupport.UNTESTED
+            }
         )
         self.add_action_holder(self.move_resize_action_holder)
 
